@@ -1,4 +1,4 @@
-package com.soul.blog;
+package com.soul.blog.presentation.controller;
 
 import com.soul.blog.domain.model.entry.Hello;
 import com.soul.blog.infrastructrue.dao.HelloDao;
@@ -19,6 +19,11 @@ public class HelloRestController {
     @Autowired
     private HelloDao helloDao;
 
+    @RequestMapping("/")
+    public String index(){
+        return "helloworld!";
+    }
+
     @RequestMapping("/add")
     public Hello add(Hello hello){
         Hello helloData = helloDao.save(hello);
@@ -31,10 +36,5 @@ public class HelloRestController {
         List<Hello> helloList = helloDao.findAll();
 
         return helloList;
-    }
-
-    @RequestMapping("/")
-    public String index(){
-        return "helloworld!";
     }
 }
